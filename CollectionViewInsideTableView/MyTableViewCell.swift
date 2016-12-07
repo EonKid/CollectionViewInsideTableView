@@ -10,15 +10,18 @@ import UIKit
 
 class MyTableViewCell: UITableViewCell ,UICollectionViewDelegate,UICollectionViewDataSource{
 
+    var arrTemp = NSArray()
     @IBOutlet weak var cv: UICollectionView!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
     
-    func reloadCollectionView() {
+    func reloadCollectionView(arrData:NSArray) {
+        arrTemp = arrData
         cv.delegate = self
         cv.dataSource = self
+        cv.reloadData()
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -35,7 +38,7 @@ class MyTableViewCell: UITableViewCell ,UICollectionViewDelegate,UICollectionVie
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int
     {
-        return 10
+        return arrTemp.count
         
     }
     
